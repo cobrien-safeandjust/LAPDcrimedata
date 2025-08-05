@@ -28,9 +28,28 @@ watts_homicides <- data |>
   summarise(homicides = sum(HOM)) |> 
   mutate(change_from_1992 = (homicides - 37)/37)
 
+write.csv(watts_homicides, "watts homicides by year.csv")
 
-plot(LAPDmap.new)
-library(sf) 
-ls()
-library(sp)
-plot(map_data)
+
+
+
+
+
+
+data <- data |> 
+  group_by(rd, year) |> 
+  summarise(across(where(is.numeric), ~sum (.x)))
+
+rd_homicides <- data |> 
+  group_by(rd) |> 
+  mutate(homicides = HOM,
+         homicides_1992 = HOM[year == 1992]) |> 
+  ungroup() |> 
+  mutate(change_from_1992 = (homicides - homicides_1992)/homicides_1992)
+  
+  
+  group_by(rd) |> 
+  mutate(homicides_1992 = homicides[year == 1992],
+         change_from_1992 = (homicides - homicides_1992) / homicides_1992)
+
+
