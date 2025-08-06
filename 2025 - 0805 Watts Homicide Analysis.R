@@ -5,12 +5,12 @@ library(tidylog)
 data <- read.csv("LAPD crime counts 1988-2014 merged.csv")
 
 watts <- c(1826,
+           1827,
+           1829,
            1835,
            1836,
            1837,
            1846,
-           1827,
-           1829,
            1838,
            1839,
            1849 ) # With Anne's help, we were able to identify which reporting districts were in Watts.
